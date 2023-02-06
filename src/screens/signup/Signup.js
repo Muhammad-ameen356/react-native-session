@@ -9,14 +9,18 @@ import {
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
-const Login = () => {
+const Signup = () => {
   return (
     <LinearGradient
       colors={["#ffffff", "#faf0ff"]}
       style={styles.mainContainer}>
       <View style={styles.innerContainer}>
         <View>
-          <Text style={styles.headingText}>Sign In</Text>
+          <Text style={styles.headingText}>Sign up</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Full Name</Text>
+          <TextInput style={styles.input} placeholder="Full name" />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Email</Text>
@@ -26,8 +30,15 @@ const Login = () => {
           <Text style={styles.label}>Password</Text>
           <TextInput style={styles.input} placeholder="Enter Password" />
         </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Confirm Password</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Confirm Password"
+          />
+        </View>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Sign in</Text>
+          <Text style={styles.buttonText}>Signup</Text>
         </TouchableOpacity>
 
         <View style={styles.socialButtonContainer}>
@@ -56,7 +67,7 @@ const Login = () => {
         </View>
 
         <View style={styles.alreadyAccContainer}>
-          <Text style={styles.alreadyAccText}>Don't you have an account</Text>
+          <Text style={styles.alreadyAccText}>Already have an account?</Text>
         </View>
       </View>
     </LinearGradient>
@@ -170,4 +181,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Signup;
