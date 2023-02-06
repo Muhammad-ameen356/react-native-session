@@ -15,48 +15,51 @@ const Login = () => {
       colors={["#ffffff", "#faf0ff"]}
       style={styles.mainContainer}>
       <View style={styles.innerContainer}>
-        <View>
-          <Text style={styles.headingText}>Sign In</Text>
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Email</Text>
-          <TextInput style={styles.input} placeholder="Username" />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Password</Text>
-          <TextInput style={styles.input} placeholder="Enter Password" />
-        </View>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Sign in</Text>
-        </TouchableOpacity>
+        <View style={styles.innerFirstContainer}>
+          <View>
+            <Text style={styles.headingText}>Sign In</Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput style={styles.input} placeholder="Username" />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput style={styles.input} placeholder="Enter Password" />
+          </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Sign in</Text>
+          </TouchableOpacity>
 
-        <View style={styles.socialButtonContainer}>
-          <View style={styles.socialBtnInner1}>
-            <TouchableOpacity style={styles.socialButton1}>
-              <View>
+          <View style={styles.socialButtonContainer}>
+            <View style={styles.socialBtnInner1}>
+              <TouchableOpacity style={styles.socialButton1}>
+                <View>
+                  <Image
+                    source={require("../../assets/images/googleImg.png")}
+                    style={styles.iconImage}
+                  />
+                </View>
+                <View>
+                  <Text style={styles.socialBtnText}>Google</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.socialBtnInner2}>
+              <TouchableOpacity style={styles.socialButton2}>
                 <Image
-                  source={require("../../assets/images/googleImg.png")}
+                  source={require("../../assets/images/facebookImg.png")}
                   style={styles.iconImage}
                 />
-              </View>
-              <View>
-                <Text style={styles.socialBtnText}>Google</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.socialBtnInner2}>
-            <TouchableOpacity style={styles.socialButton2}>
-              <Image
-                source={require("../../assets/images/facebookImg.png")}
-                style={styles.iconImage}
-              />
-              <Text style={styles.socialBtnText}>Facebook</Text>
-            </TouchableOpacity>
+                <Text style={styles.socialBtnText}>Facebook</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-
-        <View style={styles.alreadyAccContainer}>
-          <Text style={styles.alreadyAccText}>Don't you have an account</Text>
+        <View style={styles.innerSecondContainer}>
+          <View style={styles.alreadyAccContainer}>
+            <Text style={styles.alreadyAccText}>Don't you have an account</Text>
+          </View>
         </View>
       </View>
     </LinearGradient>
@@ -74,6 +77,17 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     width: "80%",
+  },
+  innerFirstContainer: {
+    height: "88%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  innerSecondContainer: {
+    height: "12%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   input: {
     borderWidth: 1,
@@ -161,7 +175,7 @@ const styles = StyleSheet.create({
   },
 
   alreadyAccContainer: {
-    marginTop: 25,
+    // marginTop: 25,
   },
   alreadyAccText: {
     textAlign: "center",
