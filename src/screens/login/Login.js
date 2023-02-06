@@ -8,22 +8,21 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
 
 const Login = () => {
   return (
-    <SafeAreaView style={styles.mainContainer}>
+    // <SafeAreaView>
+    <LinearGradient
+      colors={["#ffffff", "#faf0ff"]}
+      style={styles.mainContainer}>
       <View style={styles.innerContainer}>
         <View>
           <Text style={styles.headingText}>Sign up</Text>
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Full Name</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Full name"
-            // onChangeText={onChangeText}
-            // value={text}
-          />
+          <TextInput style={styles.input} placeholder="Full name" />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Email</Text>
@@ -50,7 +49,7 @@ const Login = () => {
               <View>
                 <Image
                   source={require("../../assets/images/googleImg.png")}
-                  style={{width: 30, height: 30}}
+                  style={styles.iconImage}
                 />
               </View>
               <View>
@@ -62,7 +61,7 @@ const Login = () => {
             <TouchableOpacity style={styles.socialButton2}>
               <Image
                 source={require("../../assets/images/facebookImg.png")}
-                style={{width: 30, height: 30}}
+                style={styles.iconImage}
               />
               <Text style={styles.socialBtnText}>Facebook</Text>
             </TouchableOpacity>
@@ -73,7 +72,8 @@ const Login = () => {
           <Text style={styles.alreadyAccText}>Already have an account?</Text>
         </View>
       </View>
-    </SafeAreaView>
+    </LinearGradient>
+    // </SafeAreaView>
   );
 };
 
@@ -83,16 +83,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  gradient: {
+    width: "80%",
+  },
   innerContainer: {
     width: "80%",
   },
   input: {
     borderWidth: 1,
     borderColor: "#a3a3a3",
-    paddingLeft: 8,
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingVertical: 15,
     paddingRight: 15,
+    paddingLeft: 8,
     borderRadius: 5,
   },
   label: {
@@ -115,6 +117,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#613f82",
+    fontSize: 16,
   },
   inputContainer: {
     marginTop: 10,
@@ -165,11 +168,11 @@ const styles = StyleSheet.create({
     color: "#a9c7cd",
     fontSize: 16,
   },
-  // socialBtnText2: {
-  //   textAlign: "center",
-  //   color: "#a9c7cd",
-  //   fontSize:
-  // },
+
+  iconImage: {
+    width: 30,
+    height: 30,
+  },
 
   alreadyAccContainer: {
     marginTop: 25,
