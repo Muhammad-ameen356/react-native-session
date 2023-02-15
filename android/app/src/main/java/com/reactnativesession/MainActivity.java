@@ -1,4 +1,4 @@
-package com.reactnativesession;
+package com.medsnmart;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
