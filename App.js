@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import HelloWorld from "./src/components/HelloWorld";
 import SplashScreen from "react-native-splash-screen";
 import Signup from "./src/screens/signup/Signup";
 import Login from "./src/screens/login/Login";
+import Home from "./src/screens/home/Home";
 
 export default function App() {
   useEffect(() => {
@@ -10,7 +10,8 @@ export default function App() {
   }, []);
   const [isLogin, setIsLogin] = useState(true);
   return isLogin ? (
-    <Login setIsLogin={setIsLogin} />
+    // <Login setIsLogin={setIsLogin} />
+    <Home />
   ) : (
     <Signup setIsLogin={setIsLogin} />
   );
