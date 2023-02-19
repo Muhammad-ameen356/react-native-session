@@ -1,4 +1,4 @@
-package com.reactnativesession;
+package com.medsnmart;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

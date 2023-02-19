@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "537044822847",
+    "project_id": "meds-mart",
+    "storage_bucket": "meds-mart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537044822847:android:bfc9d5ce1b826448de818a",
+        "android_client_info": {
+          "package_name": "com.medsnmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537044822847-efbvp35n65bjb74r13vvv6rsc8bog14i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2iw5DQDZHCk6V3Z3wmn1XD7YvQpq2R5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537044822847-efbvp35n65bjb74r13vvv6rsc8bog14i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
