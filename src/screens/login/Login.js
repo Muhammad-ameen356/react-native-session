@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
-const Login = ({setIsLogin}) => {
+const Login = ({navigation}) => {
   return (
     <LinearGradient
       colors={["#ffffff", "#faf0ff"]}
@@ -58,7 +58,7 @@ const Login = ({setIsLogin}) => {
         </View>
         <View style={styles.innerSecondContainer}>
           <View style={styles.alreadyAccContainer}>
-            <TouchableOpacity onPress={() => setIsLogin(false)}>
+            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
               <Text style={styles.alreadyAccText}>
                 Don't you have an account
               </Text>

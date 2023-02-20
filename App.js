@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import SplashScreen from "react-native-splash-screen";
-import Signup from "./src/screens/signup/Signup";
-import Login from "./src/screens/login/Login";
-import Home from "./src/screens/home/Home";
+import {NavigationContainer} from "@react-navigation/native";
+import {Auth} from "./src/routes";
 
 export default function App() {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
-  const [isLogin, setIsLogin] = useState(true);
-  return isLogin ? (
-    // <Login setIsLogin={setIsLogin} />
-    <Home />
-  ) : (
-    <Signup setIsLogin={setIsLogin} />
+
+  return (
+    <NavigationContainer>
+      <Auth />
+    </NavigationContainer>
   );
 }

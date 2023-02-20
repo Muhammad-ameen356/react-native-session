@@ -1,10 +1,15 @@
-import {FlatList, SafeAreaView, StyleSheet} from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import {medicineArr} from "../../constants/mock";
 import Item from "../../components/Item";
 import LinearGradient from "react-native-linear-gradient";
 
-const Home = () => {
+const Home = ({navigation}) => {
   const onEndReached = () => {
     console.log("abcd");
   };
@@ -17,7 +22,11 @@ const Home = () => {
           style={styles.flatList}
           data={medicineArr}
           renderItem={({item}) => (
-            <Item image={item.image} name={item.name} price={item.price} />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("ProductDetails", item)}
+              style={{width: "45%", height: "100%"}}>
+              <Item image={item.image} name={item.name} price={item.price} />
+            </TouchableOpacity>
           )}
           keyExtractor={item => `${item.id}`}
           numColumns={2}
