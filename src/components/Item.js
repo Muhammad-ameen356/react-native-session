@@ -21,7 +21,7 @@ export default Item;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    width: "45%",
+    width: "100%",
     borderWidth: 0.5,
     borderColor: "#b4b4b4",
     display: "flex",
