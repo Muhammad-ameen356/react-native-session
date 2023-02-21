@@ -8,6 +8,7 @@ import React from "react";
 import {medicineArr} from "../../constants/mock";
 import Item from "../../components/Item";
 import LinearGradient from "react-native-linear-gradient";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Home = ({navigation}) => {
   const onEndReached = () => {
@@ -18,6 +19,7 @@ const Home = ({navigation}) => {
       colors={["#ffffff", "#faf0ff"]}
       style={styles.mainContainer}>
       <SafeAreaView>
+        <Icon name="home" size={30} color="#900" />
         <FlatList
           style={styles.flatList}
           data={medicineArr}
