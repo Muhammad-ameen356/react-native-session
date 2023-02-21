@@ -33,7 +33,15 @@ const ProductDetail = ({navigation, route}) => {
           <View style={styles.bottomContainer}>
             <View style={styles.quantityContainer}>
               <Text>Quantity</Text>
-              <View />
+              <View style={{flexDirection: "row", paddingLeft: 20}}>
+                <TouchableOpacity style={styles.circleBtn}>
+                  <Text>i</Text>
+                </TouchableOpacity>
+                <Text>2</Text>
+                <TouchableOpacity style={styles.circleBtn}>
+                  <Text>i</Text>
+                </TouchableOpacity>
+              </View>
             </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
@@ -126,6 +134,15 @@ const styles = StyleSheet.create({
   },
   btn2: {
     backgroundColor: "orange",
+  },
+  circleBtn: {
+    width: 25,
+    height: 25,
+    backgroundColor: "pink",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+    margin: 16,
   },
 });
 
