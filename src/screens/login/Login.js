@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   Text,
@@ -8,8 +8,22 @@ import {
   Image,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import {useDispatch, useSelector} from "react-redux";
+import {loginWithEmailAndPassword} from "../../store/actions";
 
 const Login = ({navigation}) => {
+  const {isLoading} = useSelector(state => state.auth);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const _loginHandler = () => {
+    const data = {
+      email,
+      password,
+    };
+    dispatch(loginWithEmailAndPassword({data}));
+  };
   return (
     <LinearGradient
       colors={["#ffffff", "#faf0ff"]}
@@ -21,13 +35,31 @@ const Login = ({navigation}) => {
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
-            <TextInput style={styles.input} placeholder="Username" />
+            <TextInput
+              style={styles.input}
+              placeholder="email"
+              value={email}
+              keyboardType="email-address"
+              onChangeText={setEmail}
+            />
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Password</Text>
-            <TextInput style={styles.input} placeholder="Enter Password" />
+            <TextInput
+              style={styles.input}
+              value={password}
+              placeholder="Enter Password"
+              secureTextEntry={true}
+              onChangeText={setPassword}
+            />
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              {backgroundColor: isLoading ? "#F8EBFF" : "#dcc8ee"},
+            ]}
+            onPress={_loginHandler}
+            disabled={isLoading}>
             <Text style={styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
 
@@ -114,7 +146,6 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#dcc8ee",
     padding: 15,
     marginTop: 30,
     borderRadius: 5,

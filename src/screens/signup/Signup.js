@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   Text,
@@ -8,8 +8,21 @@ import {
   Image,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import {useDispatch} from "react-redux";
+import {signupWithEmailAndPassword} from "../../store/actions";
 
 const Signup = ({navigation}) => {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const _handleSignup = () => {
+    const data = {
+      email,
+      password,
+    };
+    dispatch(signupWithEmailAndPassword({data}));
+  };
   return (
     <LinearGradient
       colors={["#ffffff", "#faf0ff"]}
@@ -24,11 +37,22 @@ const Signup = ({navigation}) => {
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Email</Text>
-          <TextInput style={styles.input} placeholder="Username" />
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            keyboardType="email-address"
+            onChangeText={setEmail}
+          />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Password</Text>
-          <TextInput style={styles.input} placeholder="Enter Password" />
+          <TextInput
+            style={styles.input}
+            secureTextEntry={true}
+            placeholder="Enter Password"
+            onChangeText={setPassword}
+          />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Confirm Password</Text>
@@ -37,7 +61,7 @@ const Signup = ({navigation}) => {
             placeholder="Enter Confirm Password"
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={_handleSignup}>
           <Text style={styles.buttonText}>Signup</Text>
         </TouchableOpacity>
 
