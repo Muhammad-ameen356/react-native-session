@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "537044822847-efbvp35n65bjb74r13vvv6rsc8bog14i.apps.googleusercontent.com",
+          "client_id": "537044822847-qo8l01s58gahn0851ko0virm8d6mf9mn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medsnmart",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "537044822847-0s6fqjokgn34sp6gaorph4akq4d2ifmr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +35,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "537044822847-efbvp35n65bjb74r13vvv6rsc8bog14i.apps.googleusercontent.com",
+              "client_id": "537044822847-0s6fqjokgn34sp6gaorph4akq4d2ifmr.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "537044822847-fckmm2f7dcsfuj9kkga5jisa5bn16ut4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.medsnmart"
+              }
             }
           ]
         }

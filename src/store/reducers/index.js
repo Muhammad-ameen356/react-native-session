@@ -1,1 +1,1 @@
-export {default as AuthReducer, logout} from "./auth.reducer";
+export {default as AuthReducer, logout, loggedIn} from "./auth.reducer";

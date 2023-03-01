@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
   View,
   Text,
@@ -9,14 +9,26 @@ import {
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import {useDispatch, useSelector} from "react-redux";
-import {loginWithEmailAndPassword} from "../../store/actions";
+import {
+  loginWithEmailAndPassword,
+  loginWithFacebook,
+  loginWithGoogle,
+} from "../../store/actions";
+import {GoogleSignin} from "@react-native-google-signin/google-signin";
 
 const Login = ({navigation}) => {
   const {isLoading} = useSelector(state => state.auth);
-
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        "537044822847-0s6fqjokgn34sp6gaorph4akq4d2ifmr.apps.googleusercontent.com",
+    });
+  }, []);
+
   const _loginHandler = () => {
     const data = {
       email,
@@ -24,6 +36,19 @@ const Login = ({navigation}) => {
     };
     dispatch(loginWithEmailAndPassword({data}));
   };
+
+  const onGoogleButtonPress = async () => {
+    dispatch(loginWithGoogle());
+  };
+
+  const onFacebookLogin = async () => {
+    dispatch(loginWithFacebook())
+      .unwrap()
+      .then(originalPromiseResult => {
+        console.log(originalPromiseResult, "originalPromiseResult");
+      });
+  };
+
   return (
     <LinearGradient
       colors={["#ffffff", "#faf0ff"]}
@@ -37,7 +62,7 @@ const Login = ({navigation}) => {
             <Text style={styles.label}>Email</Text>
             <TextInput
               style={styles.input}
-              placeholder="email"
+              placeholder="Email"
               value={email}
               keyboardType="email-address"
               onChangeText={setEmail}
@@ -65,7 +90,9 @@ const Login = ({navigation}) => {
 
           <View style={styles.socialButtonContainer}>
             <View style={styles.socialBtnInner1}>
-              <TouchableOpacity style={styles.socialButton1}>
+              <TouchableOpacity
+                style={styles.socialButton1}
+                onPress={onGoogleButtonPress}>
                 <View>
                   <Image
                     source={require("../../assets/images/googleImg.png")}
@@ -78,7 +105,9 @@ const Login = ({navigation}) => {
               </TouchableOpacity>
             </View>
             <View style={styles.socialBtnInner2}>
-              <TouchableOpacity style={styles.socialButton2}>
+              <TouchableOpacity
+                style={styles.socialButton2}
+                onPress={onFacebookLogin}>
                 <Image
                   source={require("../../assets/images/facebookImg.png")}
                   style={styles.iconImage}

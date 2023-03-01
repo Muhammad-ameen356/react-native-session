@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ReactNativeSession</string>
+    <string name="facebook_app_id">1407401196696660</string>
+    <string name="fb_login_protocol_scheme">fb1407401196696660</string>
+    <string name="facebook_client_token">af094640afdc115c3787a17f27fd52b0</string>
 </resources>
