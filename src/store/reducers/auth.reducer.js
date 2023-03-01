@@ -1,7 +1,8 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {Alert} from "react-native";
+import {createSlice, isAnyOf} from "@reduxjs/toolkit";
 import {
   loginWithEmailAndPassword,
+  loginWithFacebook,
+  loginWithGoogle,
   signupWithEmailAndPassword,
 } from "../actions";
 
@@ -18,35 +19,66 @@ const AuthReducer = createSlice({
     logout: (state, action) => {
       state.isLoggedIn = false;
     },
+    loggedIn: (state, action) => {
+      state.isLoggedIn = true;
+    },
   },
   extraReducers: builder => {
-    builder.addCase(signupWithEmailAndPassword.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(signupWithEmailAndPassword.fulfilled, (state, action) => {
+    builder.addCase(
+      signupWithEmailAndPassword.fulfilled,
+      (state, {payload}) => {
+        state.isLoading = false;
+        state.isLoggedIn = true;
+        state.data = payload;
+      },
+    );
+
+    builder.addCase(loginWithEmailAndPassword.fulfilled, (state, {payload}) => {
       state.isLoading = false;
       state.isLoggedIn = true;
-    });
-    builder.addCase(signupWithEmailAndPassword.rejected, (state, {payload}) => {
-      state.isLoading = false;
-      Alert.alert("Error", payload);
+      state.data = payload;
     });
 
-    builder.addCase(loginWithEmailAndPassword.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(loginWithEmailAndPassword.fulfilled, (state, action) => {
+    builder.addCase(loginWithGoogle.fulfilled, (state, {payload}) => {
       state.isLoading = false;
       state.isLoggedIn = true;
+      state.data = payload;
     });
-    builder.addCase(loginWithEmailAndPassword.rejected, (state, {payload}) => {
+
+    builder.addCase(loginWithFacebook.fulfilled, (state, {payload}) => {
       state.isLoading = false;
-      Alert.alert("Error", payload);
+      state.isLoggedIn = true;
+      console.log("object", payload);
+      state.data = payload;
     });
+
+    builder.addMatcher(
+      isAnyOf(
+        loginWithEmailAndPassword.pending,
+        signupWithEmailAndPassword.pending,
+        loginWithGoogle.pending,
+        loginWithFacebook.pending,
+      ),
+      state => {
+        state.isLoading = true;
+      },
+    );
+    builder.addMatcher(
+      isAnyOf(
+        loginWithEmailAndPassword.rejected,
+        signupWithEmailAndPassword.rejected,
+        loginWithGoogle.rejected,
+        loginWithFacebook.rejected,
+      ),
+      (state, {payload}) => {
+        state.isLoading = false;
+        // Alert.alert("Error", payload);
+      },
+    );
   },
 });
 
-const {logout} = AuthReducer.actions;
-export {logout};
+const {logout, loggedIn} = AuthReducer.actions;
+export {logout, loggedIn};
 
 export default AuthReducer.reducer;
