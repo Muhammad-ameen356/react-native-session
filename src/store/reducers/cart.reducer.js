@@ -21,7 +21,6 @@ const CartReducer = createSlice({
       const data = payload;
       if (state.cart[data.id]) {
         state.cart[data.id].counting++;
-        console.log("first Add", state.cart[data.id].counting);
         state.total += payload.price;
       } else {
         state.cart[data.id] = {
@@ -32,7 +31,6 @@ const CartReducer = createSlice({
       }
     },
     removeItem(state, action) {
-      console.log(action, "removeAction");
       delete state.cart[action.payload?.data.id];
       state.total =
         state.total - action.payload?.data?.price * action.payload?.counting;

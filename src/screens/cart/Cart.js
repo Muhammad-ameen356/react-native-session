@@ -13,7 +13,6 @@ import {useSelector} from "react-redux";
 
 const Cart = () => {
   const {cart, total} = useSelector(state => state.cart);
-  console.log(cart, "Cart");
 
   return (
     <LinearGradient

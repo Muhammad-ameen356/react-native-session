@@ -44,11 +44,7 @@ const Login = ({navigation}) => {
   };
 
   const onFacebookLogin = async () => {
-    dispatch(loginWithFacebook())
-      .unwrap()
-      .then(originalPromiseResult => {
-        console.log(originalPromiseResult, "originalPromiseResult");
-      });
+    dispatch(loginWithFacebook());
   };
 
   return (

@@ -21,6 +21,7 @@ const AfterLoggedIn = () => {
       .then(_ => {
         dispatch(logout());
       });
+    dispatch(logout());
   };
   return (
     <ProductsStack.Navigator>

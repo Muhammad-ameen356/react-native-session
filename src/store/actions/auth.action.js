@@ -14,10 +14,9 @@ const signupWithEmailAndPassword = createAsyncThunk(
         url: API_URLS.AUTH.SIGNUP_WITH_EMAIL_PASSWORD,
         data,
       });
-      console.log(res.data);
+
       return res?.data;
     } catch (err) {
-      console.log(err.response.data.error.errors[0].message);
       return rejectWithValue(err.response.data.error.errors[0].message);
     }
   },
@@ -32,10 +31,9 @@ const loginWithEmailAndPassword = createAsyncThunk(
         url: API_URLS.AUTH.LOGIN_WITH_EMAIL_PASSWORD,
         data,
       });
-      console.log(res.data);
+
       return res?.data;
     } catch (err) {
-      // console.log(err.response.data.error.errors[0].message);
       return rejectWithValue("error");
     }
   },
@@ -51,7 +49,6 @@ const loginWithGoogle = createAsyncThunk(
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
       const credential = await auth().signInWithCredential(googleCredential);
-      console.log(credential);
       return credential;
     } catch (err) {
       return rejectWithValue(err);
@@ -104,7 +101,6 @@ const signOut = createAsyncThunk(
       const signOutFunction = auth()
         .signOut()
         .then(test => {
-          console.log(test, "test");
           return "User signed out!";
         });
       return signOutFunction;

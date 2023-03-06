@@ -10,9 +10,7 @@ import Item from "../../components/Item";
 import LinearGradient from "react-native-linear-gradient";
 
 const Home = ({navigation}) => {
-  const onEndReached = () => {
-    console.log("abcd");
-  };
+  const onEndReached = () => {};
   return (
     <LinearGradient
       colors={["#ffffff", "#faf0ff"]}
