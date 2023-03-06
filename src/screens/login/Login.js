@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Platform,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import {useDispatch, useSelector} from "react-redux";
@@ -23,10 +24,11 @@ const Login = ({navigation}) => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    GoogleSignin.configure({
-      webClientId:
-        "537044822847-0s6fqjokgn34sp6gaorph4akq4d2ifmr.apps.googleusercontent.com",
-    });
+    Platform.OS === "android" &&
+      GoogleSignin.configure({
+        webClientId:
+          "537044822847-0s6fqjokgn34sp6gaorph4akq4d2ifmr.apps.googleusercontent.com",
+      });
   }, []);
 
   const _loginHandler = () => {
@@ -42,11 +44,7 @@ const Login = ({navigation}) => {
   };
 
   const onFacebookLogin = async () => {
-    dispatch(loginWithFacebook())
-      .unwrap()
-      .then(originalPromiseResult => {
-        console.log(originalPromiseResult, "originalPromiseResult");
-      });
+    dispatch(loginWithFacebook());
   };
 
   return (

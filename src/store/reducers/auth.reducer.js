@@ -48,7 +48,6 @@ const AuthReducer = createSlice({
     builder.addCase(loginWithFacebook.fulfilled, (state, {payload}) => {
       state.isLoading = false;
       state.isLoggedIn = true;
-      console.log("object", payload);
       state.data = payload;
     });
 

@@ -9,35 +9,39 @@ import {
 import React from "react";
 import LinearGradient from "react-native-linear-gradient";
 import {CartItem} from "../../components";
-import {medicineArr} from "../../constants/mock";
+import {useSelector} from "react-redux";
 
 const Cart = () => {
+  const {cart, total} = useSelector(state => state.cart);
+
   return (
     <LinearGradient
       colors={["#ffffff", "#faf0ff"]}
       style={styles.mainContainer}>
       <SafeAreaView>
         <View style={styles.firstContainer}>
-          <FlatList
-            data={medicineArr}
-            renderItem={({item}) => (
-              <View style={{paddingVertical: 15}}>
-                <CartItem />
+          {Object.values(cart)?.map((item, index) => {
+            return (
+              <View key={index}>
+                <CartItem item={item} />
               </View>
-            )}
-            keyExtractor={item => `${item.id}`}
-          />
-          {/* <CartItem />
-          <CartItem />
-          <CartItem /> */}
+            );
+          })}
         </View>
         <View style={styles.secondContainer}>
           <View style={styles.totalPriceContainer}>
             <Text>Total</Text>
-            <Text>Rs. 176.00</Text>
+            <Text>Rs. {total}</Text>
           </View>
 
-          <TouchableOpacity style={styles.checkoutButton}>
+          <TouchableOpacity
+            disabled={Object.values(cart).length ? false : true}
+            style={[
+              styles.checkoutButton,
+              Object.values(cart).length
+                ? {backgroundColor: "#EBC2FF"}
+                : {backgroundColor: "#C3B0CD"},
+            ]}>
             <Text style={styles.checkoutBtnText}>Proceed To Checkout</Text>
           </TouchableOpacity>
         </View>
@@ -75,10 +79,9 @@ const styles = StyleSheet.create({
   },
   checkoutButton: {
     width: "100%",
-    backgroundColor: "#EBC2FF",
     padding: 20,
     borderRadius: 3,
-    marginBottom: 10,
+    marginVertical: 10,
   },
   checkoutBtnText: {
     textAlign: "center",
