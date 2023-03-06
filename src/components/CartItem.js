@@ -1,28 +1,49 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import React from "react";
+import {useDispatch} from "react-redux";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeItem,
+} from "../store/reducers";
+import AntIcon from "react-native-vector-icons/AntDesign";
 
-const CartItem = () => {
+const CartItem = ({item}) => {
+  const {data} = item;
+  const dispatch = useDispatch();
+
+  const decreaseQuantityFunction = item => {
+    if (item.counting === 1) {
+      dispatch(removeItem(item));
+    } else {
+      dispatch(decreaseQuantity(item));
+    }
+  };
   return (
     <View style={styles.mainContainer}>
       <View style={styles.firstContainer}>
         <Image
           source={{
-            uri: "https://media.naheed.pk/catalog/product/cache/17cb4734a0ff40d859ea4c0cfd876903/1/0/1056474-1.jpg",
+            uri: data.image,
           }}
           style={styles.image}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.nameAndPriceText}>Panadol</Text>
-          <Text style={styles.nameAndPriceText}>Rs. 36.00</Text>
+          <Text style={styles.nameAndPriceText}>{data?.name}</Text>
+          <Text style={styles.nameAndPriceText}>Rs. {data?.price}</Text>
         </View>
       </View>
       <View style={styles.secondContainer}>
-        <TouchableOpacity style={styles.circleBtn}>
-          <Text>i</Text>
+        <TouchableOpacity
+          style={[styles.circleBtn]}
+          onPress={() => decreaseQuantityFunction(item)}>
+          <AntIcon name="minuscircleo" size={24} style={{color: "#7763a4"}} />
         </TouchableOpacity>
-        <Text>2</Text>
-        <TouchableOpacity style={styles.circleBtn}>
-          <Text>i</Text>
+        <Text>{item?.counting}</Text>
+        <TouchableOpacity
+          style={[styles.circleBtn, styles.plusCircle]}
+          onPress={() => dispatch(increaseQuantity(item))}>
+          <AntIcon name="pluscircle" size={24} style={{color: "#7763a4"}} />
         </TouchableOpacity>
       </View>
     </View>
@@ -35,7 +56,9 @@ const styles = StyleSheet.create({
   mainContainer: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+
+    marginTop: 10,
   },
 
   image: {
@@ -45,6 +68,7 @@ const styles = StyleSheet.create({
   },
   firstContainer: {
     flexDirection: "row",
+    width: "70%",
   },
   textContainer: {
     justifyContent: "space-around",
@@ -54,11 +78,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    width: "30%",
   },
   circleBtn: {
     width: 25,
     height: 25,
-    backgroundColor: "pink",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,

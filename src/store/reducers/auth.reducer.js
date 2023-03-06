@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   isLoading: false,
-  isLoggedIn: false,
+  isLoggedIn: true,
   data: {},
 };
 

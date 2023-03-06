@@ -8,9 +8,18 @@ import {
 } from "react-native";
 import React from "react";
 import LinearGradient from "react-native-linear-gradient";
+import {addCart} from "../../store/reducers";
+import {useDispatch} from "react-redux";
+import AntIcon from "react-native-vector-icons/AntDesign";
 
 const ProductDetail = ({navigation, route}) => {
   const {image, price, name} = route.params;
+  const itemFromProp = route.params;
+  const dispatch = useDispatch();
+
+  const addToCartFunc = item => {
+    dispatch(addCart(item));
+  };
 
   return (
     <LinearGradient
@@ -33,23 +42,40 @@ const ProductDetail = ({navigation, route}) => {
           <View style={styles.bottomContainer}>
             <View style={styles.quantityContainer}>
               <Text>Quantity</Text>
-              <View style={{flexDirection: "row", paddingLeft: 20}}>
-                <TouchableOpacity style={styles.circleBtn}>
-                  <Text>i</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <TouchableOpacity style={[styles.circleBtn]}>
+                  <AntIcon
+                    name="minuscircleo"
+                    size={24}
+                    style={{color: "#7763a4"}}
+                  />
                 </TouchableOpacity>
                 <Text>2</Text>
-                <TouchableOpacity style={styles.circleBtn}>
-                  <Text>i</Text>
+                <TouchableOpacity style={[styles.circleBtn, styles.plusCircle]}>
+                  <AntIcon
+                    name="pluscircle"
+                    size={24}
+                    style={{color: "#7763a4"}}
+                  />
                 </TouchableOpacity>
               </View>
             </View>
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={[styles.btn, styles.btn1]}
-                onPress={() => navigation.navigate("Cart")}>
+                onPress={() => {
+                  navigation.navigate("Cart");
+                  addToCartFunc(itemFromProp);
+                }}>
                 <Text style={styles.btnText}>Buy Now</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.btn, styles.btn2]}>
+              <TouchableOpacity
+                onPress={() => addToCartFunc(itemFromProp)}
+                style={[styles.btn, styles.btn2]}>
                 <Text style={styles.btnText}>Add to Cart</Text>
               </TouchableOpacity>
             </View>
@@ -94,17 +120,17 @@ const styles = StyleSheet.create({
   priceText: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#862DFF",
+    color: "#7763a4",
   },
   descriptionContainer: {
     width: "100%",
-    height: "70%",
+    height: "60%",
     padding: 20,
     opacity: 0.5,
   },
   bottomContainer: {
     width: "100%",
-    height: "30%",
+    height: "40%",
   },
   quantityContainer: {
     width: "100%",
@@ -115,22 +141,23 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: "100%",
-    height: "60%",
+    height: "50%",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
   },
   btn: {
     paddingHorizontal: 40,
-    paddingVertical: 20,
+    paddingVertical: 15,
     borderRadius: 5,
   },
   btnText: {
     fontSize: 16,
-    color: "#862DFF",
+    // color: "#862DFF",
   },
   btn1: {
-    backgroundColor: "pink",
+    backgroundColor: "#D5C5F8",
+    color: "#7763a4",
   },
   btn2: {
     backgroundColor: "orange",
@@ -138,11 +165,14 @@ const styles = StyleSheet.create({
   circleBtn: {
     width: 25,
     height: 25,
-    backgroundColor: "pink",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
     margin: 16,
+  },
+
+  plusCircle: {
+    backgroundColor: "white",
   },
 });
 
