@@ -16,6 +16,7 @@ import {
   loginWithGoogle,
 } from "../../store/actions";
 import {GoogleSignin} from "@react-native-google-signin/google-signin";
+import {saveOnLocalStorage} from "../../utils";
 
 const Login = ({navigation}) => {
   const {isLoading} = useSelector(state => state.auth);
@@ -36,15 +37,30 @@ const Login = ({navigation}) => {
       email,
       password,
     };
-    dispatch(loginWithEmailAndPassword({data}));
+    dispatch(loginWithEmailAndPassword({data}))
+      .unwrap()
+      .then(async result => {
+        await saveOnLocalStorage({key: "token", value: result?.idToken});
+      });
   };
 
   const onGoogleButtonPress = async () => {
-    dispatch(loginWithGoogle());
+    dispatch(loginWithGoogle())
+      .unwrap()
+      .then(async result => {
+        const token = result.additionalUserInfo.profile.aud;
+        await saveOnLocalStorage({key: "token", value: token});
+      });
   };
 
   const onFacebookLogin = async () => {
-    dispatch(loginWithFacebook());
+    dispatch(loginWithFacebook())
+      .unwrap()
+      .then(async result => {
+        const token = result.additionalUserInfo.profile.id;
+        console.log(token, "result");
+        await saveOnLocalStorage({key: "token", value: token});
+      });
   };
 
   return (

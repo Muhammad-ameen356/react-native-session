@@ -7,20 +7,16 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import {TouchableOpacity} from "react-native";
 import {logout} from "../store/reducers";
 import {useDispatch} from "react-redux";
-import {signOut} from "../store/actions";
 import {useNavigation} from "@react-navigation/native";
+import {clearStorage} from "../utils";
 
 const ProductsStack = createNativeStackNavigator();
 
 const AfterLoggedIn = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const _logoutHandler = () => {
-    dispatch(signOut())
-      .unwrap()
-      .then(_ => {
-        dispatch(logout());
-      });
+  const _logoutHandler = async () => {
+    await clearStorage();
     dispatch(logout());
   };
   return (
