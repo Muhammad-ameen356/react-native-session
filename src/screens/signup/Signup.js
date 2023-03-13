@@ -10,6 +10,7 @@ import {
 import LinearGradient from "react-native-linear-gradient";
 import {useDispatch} from "react-redux";
 import {signupWithEmailAndPassword} from "../../store/actions";
+import {saveOnLocalStorage} from "../../utils";
 
 const Signup = ({navigation}) => {
   const dispatch = useDispatch();
@@ -21,7 +22,11 @@ const Signup = ({navigation}) => {
       email,
       password,
     };
-    dispatch(signupWithEmailAndPassword({data}));
+    dispatch(signupWithEmailAndPassword({data}))
+      .unwrap()
+      .then(async result => {
+        await saveOnLocalStorage({key: "token", value: result?.idToken});
+      });
   };
   return (
     <LinearGradient

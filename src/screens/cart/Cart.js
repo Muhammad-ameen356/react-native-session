@@ -20,13 +20,17 @@ const Cart = () => {
       style={styles.mainContainer}>
       <SafeAreaView>
         <View style={styles.firstContainer}>
-          {Object.values(cart)?.map((item, index) => {
-            return (
-              <View key={index}>
-                <CartItem item={item} />
-              </View>
-            );
-          })}
+          {Object.values(cart).length ? (
+            Object.values(cart)?.map((item, index) => {
+              return (
+                <View key={index}>
+                  <CartItem item={item} />
+                </View>
+              );
+            })
+          ) : (
+            <Text style={{fontSize: 20}}>No item in your cart</Text>
+          )}
         </View>
         <View style={styles.secondContainer}>
           <View style={styles.totalPriceContainer}>
