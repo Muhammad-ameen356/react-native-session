@@ -1,10 +1,5 @@
-import {createSlice, isAnyOf} from "@reduxjs/toolkit";
-import {
-  loginWithEmailAndPassword,
-  loginWithFacebook,
-  loginWithGoogle,
-  signupWithEmailAndPassword,
-} from "../actions";
+import {createSlice} from "@reduxjs/toolkit";
+import {Alert} from "react-native";
 
 const initialState = {
   loading: false,
@@ -43,10 +38,20 @@ const CartReducer = createSlice({
       state.cart[action.payload?.data?.id].counting--;
       state.total = state.total - action.payload.data.price;
     },
+    clearCart(state, action) {
+      state.cart = {};
+      state.total = 0;
+      Alert.alert("Meds & Mart", "Order Placed Successfully");
+    },
   },
 });
 
-export const {addCart, increaseQuantity, decreaseQuantity, removeItem} =
-  CartReducer.actions;
+export const {
+  addCart,
+  increaseQuantity,
+  decreaseQuantity,
+  removeItem,
+  clearCart,
+} = CartReducer.actions;
 
 export default CartReducer.reducer;
