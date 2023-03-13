@@ -4,6 +4,7 @@ import {Home} from "../screens/home";
 import {ProductDetails} from "../screens/productsDetails";
 import {Cart} from "../screens/cart";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import {TouchableOpacity} from "react-native";
 import {logout} from "../store/reducers";
 import {useDispatch} from "react-redux";
@@ -25,10 +26,25 @@ const AfterLoggedIn = () => {
         name="Home"
         component={Home}
         options={{
+          title: "Product",
           headerBackTitleVisible: false,
+          headerTitleAlign: "center",
+          headerTintColor: "#7763a4",
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: "white",
+          },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                _logoutHandler();
+              }}>
+              <Ionicons name="menu" size={22} color="#7763a4" />
+            </TouchableOpacity>
+          ),
           headerRight: () => (
-            <TouchableOpacity onPress={_logoutHandler}>
-              <Icon name="power-off" size={30} color="#7763a4" />
+            <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+              <Icon name="cart-plus" size={30} color="#7763a4" />
             </TouchableOpacity>
           ),
         }}

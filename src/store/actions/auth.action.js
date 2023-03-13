@@ -3,6 +3,7 @@ import {GoogleSignin} from "@react-native-google-signin/google-signin";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 import {AccessToken, LoginManager} from "react-native-fbsdk-next";
+import {Alert} from "react-native";
 import {API_URLS} from "../../constants";
 
 const signupWithEmailAndPassword = createAsyncThunk(
@@ -17,6 +18,10 @@ const signupWithEmailAndPassword = createAsyncThunk(
 
       return res?.data;
     } catch (err) {
+      Alert.alert(
+        "Something went wrong",
+        err.response.data.error.errors[0].message,
+      );
       return rejectWithValue(err.response.data.error.errors[0].message);
     }
   },
@@ -34,6 +39,7 @@ const loginWithEmailAndPassword = createAsyncThunk(
 
       return res?.data;
     } catch (err) {
+      Alert.alert("Invalid Credentials", "Please insert right credentials");
       return rejectWithValue("error");
     }
   },
