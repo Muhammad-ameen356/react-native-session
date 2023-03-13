@@ -11,7 +11,7 @@ import LinearGradient from "react-native-linear-gradient";
 import {CartItem} from "../../components";
 import {useSelector} from "react-redux";
 
-const Cart = () => {
+const Cart = ({navigation}) => {
   const {cart, total} = useSelector(state => state.cart);
 
   return (
@@ -39,6 +39,7 @@ const Cart = () => {
           </View>
 
           <TouchableOpacity
+            onPress={() => navigation.navigate("checkout")}
             disabled={Object.values(cart).length ? false : true}
             style={[
               styles.checkoutButton,

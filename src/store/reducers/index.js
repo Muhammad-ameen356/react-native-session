@@ -5,4 +5,5 @@ export {
   increaseQuantity,
   decreaseQuantity,
   removeItem,
+  clearCart,
 } from "./cart.reducer";
