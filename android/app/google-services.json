@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "537044822847",
+    "project_id": "meds-mart",
+    "storage_bucket": "meds-mart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537044822847:android:bfc9d5ce1b826448de818a",
+        "android_client_info": {
+          "package_name": "com.medsnmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537044822847-qo8l01s58gahn0851ko0virm8d6mf9mn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medsnmart",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "537044822847-0s6fqjokgn34sp6gaorph4akq4d2ifmr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2iw5DQDZHCk6V3Z3wmn1XD7YvQpq2R5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537044822847-0s6fqjokgn34sp6gaorph4akq4d2ifmr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "537044822847-fckmm2f7dcsfuj9kkga5jisa5bn16ut4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.medsnmart"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
